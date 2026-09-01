@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5326b4966f4df47b02bbfa4c8d9b08, type: 3}
   m_Name: HexSettings
   m_EditorClassIdentifier: 
-  hexPrefab: {fileID: 7680466963945465618, guid: eee402182b52ccd419df87fcb20b822f, type: 3}
+  <HexPrefab>k__BackingField: {fileID: 7680466963945465618, guid: eee402182b52ccd419df87fcb20b822f, type: 3}
   <SideSize>k__BackingField: 1

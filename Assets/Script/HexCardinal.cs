@@ -4,20 +4,28 @@ using System.Collections.Generic;
 
 public enum HexCardinal {
     E = 0,
-    NE=1, NO=2,
-    O=3,
-    SO=4, SE=5
+    NE=1, NW=2,
+    W=3,
+    SW=4, SE=5
 }
 
 public static class HexCardinalsExtensions
 {
-    public static float Rad (this HexCardinal target) => ((int) target) * HexSettings.RAD;
+    public static float Rad (this HexCardinal target) => ((int) target) * HexMath.RAD;
 
     public static Vector3 Coord (this HexCardinal target)
-        => new Vector3(HexSettings.Instance.Apothem * Mathf.Cos(target.Rad()), 0,
-                       HexSettings.Instance.Apothem * Mathf.Sin(target.Rad()));
+        => new Vector3(HexMath.Apothem * 2 * Mathf.Cos(target.Rad()), 0,
+                       HexMath.Apothem * 2 * Mathf.Sin(target.Rad()));
 
-    public static Vector3 ACoord (this HexCardinal target)
-        => new Vector3((target.Coord().x - (Mathf.Sqrt(3) / 3) * target.Coord().z) / HexSettings.Instance.Apothem, 0,
-                       (2*target.Coord().z) / (HexSettings.Instance.Apothem * Mathf.Sqrt(3)));
+    // baked since this is used very often. But really it's the same as => HexMath.CarToApo(target.Coord)
+    public static Vector3Int ACoord (this HexCardinal target)
+        => target switch
+    {
+        HexCardinal.E => new(1,0,0),
+        HexCardinal.NE => new(0,0,1),
+        HexCardinal.NW => new(-1,0,1),
+        HexCardinal.W => new(-1,0,0),
+        HexCardinal.SW => new(0,0,-1),
+        HexCardinal.SE => new(1,0,-1)
+    };
 }
