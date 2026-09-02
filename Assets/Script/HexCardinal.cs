@@ -26,6 +26,7 @@ public static class HexCardinalsExtensions
         HexCardinal.NW => new(-1,0,1),
         HexCardinal.W => new(-1,0,0),
         HexCardinal.SW => new(0,0,-1),
-        HexCardinal.SE => new(1,0,-1)
+        HexCardinal.SE => new(1,0,-1),
+        _ => new(0,0,0)
     };
 }
